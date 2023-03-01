@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Calculator</title>
+	<style>
+		body {
+			background-color: #f7f7f7;
+			font-family: Arial;
+		}
+
+		#calculator {
+			background-color: #fff;
+			border: 1px solid #ccc;
+			width: 300px;
+			margin: 50px auto;
+			padding: 10px;
+			border-radius: 5px;
+			box-shadow: 0 0 5px rgba(0,0,0,0.1);
+		}
+
+		input[type="button"] {
+			background-color: #f2f2f2;
+			border: 1px solid #ccc;
+			color: #333;
+			font-size: 16px;
+			padding: 10px;
+			width: 45px;
+			margin: 5px;
+			border-radius: 5px;
+			box-shadow: 0 0 3px rgba(0,0,0,0.1);
+			cursor: pointer;
+		}
+
+		input[type="text"] {
+			background-color: #f2f2f2;
+			border: none;
+			color: #333;
+			font-size: 20px;
+			padding: 10px;
+			width: 100%;
+			margin-bottom: 10px;
+			border-radius: 5px;
+			box-shadow: 0 0 3px rgba(0,0,0,0.1);
+		}
+	</style>
+</head>
+<body>
+	<div id="calculator">
+		<input type="text" id="result" value="0">
+		<input type="button" value="7" onclick="calculator.input('7')">
+		<input type="button" value="8" onclick="calculator.input('8')">
+		<input type="button" value="9" onclick="calculator.input('9')">
+		<input type="button" value="/" onclick="calculator.operation('/')">
+		<input type="button" value="4" onclick="calculator.input('4')">
+		<input type="button" value="5" onclick="calculator.input('5')">
+		<input type="button" value="6" onclick="calculator.input('6')">
+		<input type="button" value="*" onclick="calculator.operation('*')">
+		<input type="button" value="1" onclick="calculator.input('1')">
+		<input type="button" value="2" onclick="calculator.input('2')">
+		<input type="button" value="3" onclick="calculator.input('3')">
+		<input type="button" value="-" onclick="calculator.operation('-')">
+		<input type="button" value="0" onclick="calculator.input('0')">
+		<input type="button" value="." onclick="calculator.input('.')">
+		<input type="button" value="C" onclick="calculator.clear()">
+		<input type="button" value="+" onclick="calculator.operation('+')">
+		<input type="button" value="=" onclick="calculator.calculate()">
+	</div>
+	<script>
+		var calculator = {
+			input: function(num) {
+				var result = document.getElementById("result");
+				if (result.value == "0") {
+					result.value = num;
+				} else {
+					result.value += num;
+				}
+			},
+
+			operation: function(op) {
+				var result = document.getElementById("result");
+        if (op == "+" || op == "-" || op == "*" || op == "/") {
+    this.operator = op;
+    this.firstNumber = parseFloat(result.value);
+    result.value = "0";
+  }
+},
+
+calculate: function() {
+  var result = document.getElementById("result");
+  if (this.operator) {
+    var secondNumber = parseFloat(result.value);
+    switch(this.operator) {
+      case "+":
+        result.value = this.firstNumber + secondNumber;
+        break;
+      case "-":
+        result.value = this.firstNumber - secondNumber;
+        break;
+      case "*":
+        result.value = this.firstNumber * secondNumber;
+        break;
+      case "/":
+        result.value = this.firstNumber / secondNumber;
+        break;
+    }
+    this.operator = null;
+  }
+},
+
+clear: function() {
+  var result = document.getElementById("result");
+  result.value = "0";
+  this.operator = null;
+  this.firstNumber = null;
+}
+};
+</script>
+</body>
+</html>
