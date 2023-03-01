@@ -1,2 +1,2 @@
-# rndm_clcltor
-Random Simple Calculator
+# Random Simple Calculator
+Just a Random Simple Calculator
